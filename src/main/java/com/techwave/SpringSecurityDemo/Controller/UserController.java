@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techwave.SpringSecurityDemo.Entity.User;
-import com.techwave.SpringSecurityDemo.Repository.UserRepository;
 import com.techwave.SpringSecurityDemo.Service.IUserService;
 
 @RestController
@@ -24,7 +23,7 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	@PostMapping("/addUser")
-	public ResponseEntity<User> addUser(@RequestBody User user) {
+	public ResponseEntity<Object> addUser(@RequestBody User user) {
 		return userService.addUser(user);
 	}
 

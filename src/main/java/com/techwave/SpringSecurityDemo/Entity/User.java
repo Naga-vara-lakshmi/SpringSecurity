@@ -13,18 +13,22 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String username;
+	private String email;
 	private String password;
 	private String roles;
 	public User() {
 		
 	}
-	public User(int id, String username, String password, String roles) {
+	
+	public User(int id, String username, String email, String password, String roles) {
 		super();
 		this.id = id;
 		this.username = username;
+		this.email = email;
 		this.password = password;
 		this.roles = roles;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -49,6 +53,15 @@ public class User {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 	
 
