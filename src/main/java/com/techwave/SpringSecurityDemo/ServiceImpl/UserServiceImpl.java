@@ -19,7 +19,6 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public ResponseEntity<Object> addUser(User user) {
 		User userFound = userRepository.findByEmail(user.getEmail());
-		
 		if(userFound==null)
 		{
 			user.setRoles("ROLE_USER");

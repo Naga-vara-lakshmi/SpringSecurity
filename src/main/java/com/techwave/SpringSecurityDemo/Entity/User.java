@@ -1,5 +1,7 @@
 package com.techwave.SpringSecurityDemo.Entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,13 +10,19 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "UserTable")
+@Schema(name = "User",description = "Schema to hold user details")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(name = "id",requiredMode =  RequiredMode.NOT_REQUIRED,example = "1")
 	private int id;
+	@Schema(name="user_name",description = "name of the user",example="john",requiredMode = RequiredMode.REQUIRED)
 	private String username;
+	@Schema(description = "email of the user",example="john@gmail.com",requiredMode = RequiredMode.REQUIRED)
 	private String email;
+	@Schema(description = "password",example="12367",requiredMode = RequiredMode.REQUIRED)
 	private String password;
+	@Schema(requiredMode = RequiredMode.NOT_REQUIRED,example = "ROLE_USER")
 	private String roles;
 	public User() {
 		
