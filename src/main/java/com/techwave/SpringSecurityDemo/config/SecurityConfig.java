@@ -26,6 +26,7 @@ public class SecurityConfig{
 		http.csrf(csrf->csrf.disable());
 		http.authorizeHttpRequests(auth -> auth
 	            .requestMatchers(toH2Console()).permitAll()
+	            .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/swagger-ui.html").permitAll()
 	            .requestMatchers("/user/addUser").hasRole("ADMIN")
 	            .requestMatchers("/user/getAllUsers").hasRole("USER")
 	            .anyRequest().authenticated()
