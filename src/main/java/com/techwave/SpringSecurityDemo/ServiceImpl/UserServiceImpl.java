@@ -28,7 +28,6 @@ public class UserServiceImpl implements IUserService {
 		}
 		return ResponseEntity.status(409).body("User with email "+user.getEmail()+" is present");
 			
-		
 
 	}
 
