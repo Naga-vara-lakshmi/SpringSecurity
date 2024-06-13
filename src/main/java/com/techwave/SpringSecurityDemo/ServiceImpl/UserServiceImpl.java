@@ -1,8 +1,10 @@
 package com.techwave.SpringSecurityDemo.ServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,15 @@ public class UserServiceImpl implements IUserService {
 	public ResponseEntity<List<User>> getAllUsers() {
 		
 		return ResponseEntity.ok(userRepository.findAll());
+	}
+
+	@Override
+	public ResponseEntity<Object> getUserById(int id) {
+		Optional<User> user = userRepository.findById(id);
+		if(user.isPresent()) {
+			return ResponseEntity.ok(user.get());
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with id "+id+" is not present");
 	}
 
 	
