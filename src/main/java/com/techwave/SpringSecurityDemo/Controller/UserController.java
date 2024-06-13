@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,18 @@ public class UserController {
 	@PostMapping("/addUser")
 	public ResponseEntity<Object> addUser(@RequestBody User user) {
 		return userService.addUser(user);
+	}
+	@Operation(summary = "Get user by Id",
+			description = "It will take Id of the particular user",
+			security = @SecurityRequirement(name = "basicAuth"))
+	@ApiResponses({
+		@ApiResponse(responseCode = "200",description = "OK",content ={@Content(schema = @Schema(implementation =User.class ),mediaType = "application/json")} ),
+		@ApiResponse(responseCode = "404",description = "Not Found" ,content= {@Content(schema = @Schema())})
+		
+	})
+	@GetMapping("/getUserById/{id}")
+	public ResponseEntity<Object> getUserById(@PathVariable int id){
+		return userService.getUserById(id);
 	}
 
 }

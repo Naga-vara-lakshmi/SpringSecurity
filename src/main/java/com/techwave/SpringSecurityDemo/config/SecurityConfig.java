@@ -29,6 +29,7 @@ public class SecurityConfig{
 	            .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/swagger-ui.html").permitAll()
 	            .requestMatchers("/user/addUser").hasRole("ADMIN")
 	            .requestMatchers("/user/getAllUsers").hasRole("USER")
+	            .requestMatchers("/user/getUserById/{id}").hasRole("ADMIN")
 	            .anyRequest().authenticated()
 	                  )
 		.headers(headers->headers.frameOptions(frameOptions->frameOptions.disable()));
