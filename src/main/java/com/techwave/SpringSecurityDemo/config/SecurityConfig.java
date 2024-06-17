@@ -30,6 +30,8 @@ public class SecurityConfig{
 	            .requestMatchers("/user/addUser").hasRole("ADMIN")
 	            .requestMatchers("/user/getAllUsers").hasRole("USER")
 	            .requestMatchers("/user/getUserById/{id}").hasRole("ADMIN")
+	            .requestMatchers("/user/addProduct").hasRole("ADMIN")
+	            .requestMatchers("/user/getAllProducts").hasAnyRole("USER","ADMIN")
 	            .anyRequest().authenticated()
 	                  )
 		.headers(headers->headers.frameOptions(frameOptions->frameOptions.disable()));

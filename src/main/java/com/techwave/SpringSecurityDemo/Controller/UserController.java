@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techwave.SpringSecurityDemo.Entity.User;
+import com.techwave.SpringSecurityDemo.FeignProxy.Product;
+import com.techwave.SpringSecurityDemo.FeignProxy.ProductProxy;
 import com.techwave.SpringSecurityDemo.Service.IUserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,6 +30,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class UserController {
 	@Autowired
 	IUserService userService;
+	@Autowired
+	ProductProxy productProxy;
 	@Operation(
 			summary = "Retrieve Users",
 			description = "Get list of Users.The response is list of users with id,username,email,roles,password",
@@ -67,6 +71,14 @@ public class UserController {
 	@GetMapping("/getUserById/{id}")
 	public ResponseEntity<Object> getUserById(@PathVariable int id){
 		return userService.getUserById(id);
+	}
+	@PostMapping("/addProduct")
+	public ResponseEntity<Product> addProduct(@RequestBody Product product){
+		return productProxy.addProduct(product);
+	}
+	@GetMapping("/getAllProducts")
+	public ResponseEntity<List<Product>> getAllProducts(){
+		return productProxy.getAllProducts();
 	}
 
 }
